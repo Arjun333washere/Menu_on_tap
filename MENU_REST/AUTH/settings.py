@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+
 from pathlib import Path
 #arj
 from datetime import timedelta
-
+import os #for prod
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,13 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-z!m(*w8gb0p5ror2b8)qx*goi%q=_839%v9f1@lpp42c(z7bfu"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #production = false
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['menu-on-tap.vercel.app',
+                 "ec2-13-60-40-232.eu-north-1.compute.amazonaws.com",
+                 "13.60.40.232"]
+#add more hosts here edit later
 
 
 # Application definition
@@ -65,7 +68,7 @@ ROOT_URLCONF = "AUTH.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR,'build')],#added path to build 
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -84,12 +87,25 @@ WSGI_APPLICATION = "AUTH.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+# Database settings for production
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'menudb',
+        'USER': 'menumaster',
+        'PASSWORD': 'mealontap@123',
+        'HOST': 'menudb.czkmyakaeapm.eu-north-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -135,7 +151,11 @@ AUTH_USER_MODEL = 'Authentication.CustomUser'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-CORS_ALLOW_ALL_ORIGINS = True
+#arj
+CORS_ALLOW_ALL_ORIGINS = False  #changing to false since we are moving to prod
+CORS_ALLOWED_ORIGINS = [
+    "https://menu-on-tap.vercel.app",
+]
 
 
 #/arj
@@ -154,8 +174,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
-
+STATIC_URL = "/static/"
+#for prod edit later top
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Additional locations of static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build', 'static')  # Serve React static files
+    #os.path.join(BASE_DIR, 'static_cdn'), 
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

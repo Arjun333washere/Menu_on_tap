@@ -4,7 +4,7 @@ from django.core.files import File
 
 def generate_qr_code(menu):
     # Base URL for the React frontend
-    frontend_base_url = "http://localhost:3000"
+    frontend_base_url = "http://menu-on-tap.vercel.app"
     
     # Construct the URL for viewing the menu on the frontend (public endpoint)
     menu_url = f"{frontend_base_url}/menu/menus/{menu.id}/public/"
