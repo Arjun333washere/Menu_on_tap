@@ -27,7 +27,7 @@ const EditFoodItem = () => {
       }
 
       try {
-        const response = await axios.get(`http://localhost:8000/menu/food-items/${foodItemId}/`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu/food-items/${foodItemId}/`, {
           headers: {
             Authorization: `Bearer ${token}`, // Use token from AuthContext
           },

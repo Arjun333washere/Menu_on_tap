@@ -24,13 +24,15 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/register/', {
-        mobile_number: mobileNumber,  // Using mobile number
-        username,  // Adding username field
-        email: email || null,  // Send null if email is blank
-        password,
-        confirm_password: confirmPassword,  // Adding confirm_password field to match the server requirements
-        user_type: role,  // Updated to send user_type (as per your model)
+  
+      // Make the POST request to the registration endpoint
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register/`, {
+          mobile_number: mobileNumber,  // Using mobile number
+          username,                     // Adding username field
+          email: email || null,        // Send null if email is blank
+          password,                    // User's password
+          confirm_password: confirmPassword, // Adding confirm_password field
+          user_type: role,             // Updated to send user_type (as per your model)
       });
 
       if (response.status === 201) {

@@ -25,7 +25,7 @@ const ViewMenu = () => {
             }
 
             try {
-                const menuResponse = await axios.get(`http://127.0.0.1:8000/menu/menus/${menuId}/`, {
+                const menuResponse = await axios.get(`${process.env.REACT_APP_API_URL}/menu/menus/${menuId}/`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

@@ -6,7 +6,7 @@ const DownloadQRCode = () => {
     const [qrCodeUrl, setQrCodeUrl] = useState('');
 
     useEffect(() => {
-      fetch(`http://localhost:8000/menu/menus/${id}/download-qr-code/`) // Update this line
+      fetch(`${process.env.REACT_APP_API_URL}/menu/menus/${id}/download-qr-code/`) // Update this line
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');

@@ -16,7 +16,8 @@ const CreateRestaurant = () => {
     e.preventDefault();
     try {
       const accessToken = localStorage.getItem('token');
-      const response = await axios.post('http://127.0.0.1:8000/menu/restaurants/', {
+
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/menu/restaurants/`, {
         name,
         description,
       }, {

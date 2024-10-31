@@ -33,7 +33,7 @@ useEffect(() => {
             }
 
             // Fetch Restaurant Data
-            const restaurantResponse = await axios.get(`http://127.0.0.1:8000/menu/restaurants/${id}/`, {
+            const restaurantResponse = await axios.get(`${process.env.REACT_APP_API_URL}/menu/restaurants/${id}/`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },
@@ -43,7 +43,7 @@ useEffect(() => {
             setRestaurantId(id); // Set restaurant ID in context
 
             // Fetch Menu Data
-            const menuResponse = await axios.get(`http://127.0.0.1:8000/menu/menus/?restaurant=${id}`, {
+            const menuResponse = await axios.get(`${process.env.REACT_APP_API_URL}/menu/menus/?restaurant=${id}`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },
@@ -85,7 +85,7 @@ useEffect(() => {
 
         const access_token = localStorage.getItem('token');
         try {
-            await axios.post(`http://127.0.0.1:8000/menu/menus/${menuId}/generate-qr-code/`, {}, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/menu/menus/${menuId}/generate-qr-code/`, {}, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },
@@ -108,7 +108,7 @@ useEffect(() => {
 
         const access_token = localStorage.getItem('token');
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/menu/menus/${menuId}/download-qr-code/`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu/menus/${menuId}/download-qr-code/`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },

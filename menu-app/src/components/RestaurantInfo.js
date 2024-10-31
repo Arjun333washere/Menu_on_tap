@@ -24,7 +24,7 @@ const RestaurantInfo = () => {
                 }
 
                 // Fetch restaurant data with authorization header
-                const response = await axios.get(`http://localhost:8000/menu/restaurants/${id}/`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu/restaurants/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     },
@@ -47,7 +47,7 @@ const RestaurantInfo = () => {
                 return;
             }
 
-            await axios.delete(`http://127.0.0.1:8000/menu/restaurants/${id}/`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/menu/restaurants/${id}/`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },

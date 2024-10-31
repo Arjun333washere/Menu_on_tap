@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
       // Check if refresh token exists before proceeding
       if (refreshToken) {
         // Send the refresh token in the request body
-        await axios.post("http://127.0.0.1:8000/auth/logout/", {
+        await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout/`, {
           refresh: refreshToken,  // Send the refresh token in the request body
         });
   

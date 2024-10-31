@@ -25,7 +25,7 @@ const EditMenu = () => {
                     return;
                 }
 
-                const response = await axios.get(`http://127.0.0.1:8000/menu/menus/${id}/`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu/menus/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
@@ -55,7 +55,7 @@ const EditMenu = () => {
         e.preventDefault();
         try {
             const accessToken = localStorage.getItem('token'); // Get the access token
-            await axios.patch(`http://127.0.0.1:8000/menu/menus/${id}/`, menu, {
+            await axios.patch(`${process.env.REACT_APP_API_URL}/menu/menus/${id}/`, menu, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },

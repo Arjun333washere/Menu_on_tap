@@ -29,7 +29,7 @@ const EditRestaurant = () => {
                     return;
                 }
 
-                const response = await axios.get(`http://localhost:8000/menu/restaurants/${id}/`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/menu/restaurants/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     },
@@ -85,7 +85,7 @@ const EditRestaurant = () => {
                 return;
             }
 
-            await axios.put(`http://localhost:8000/menu/restaurants/${id}/`, data, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/menu/restaurants/${id}/`, data, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                     'Content-Type': 'multipart/form-data', // Set content type for file upload

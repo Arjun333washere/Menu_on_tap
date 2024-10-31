@@ -17,7 +17,10 @@ function Login() {
     localStorage.removeItem('refreshToken'); // Clear refresh token as well
 
     try {
-        const response = await axios.post('http://127.0.0.1:8000/auth/api/login/', {
+
+      // Log the API URL to check if it's correctly set
+    console.log('API URL:', process.env.REACT_APP_API_URL);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/api/login/`, {
             mobile_number: mobileNumber,
             password: password,
         });
