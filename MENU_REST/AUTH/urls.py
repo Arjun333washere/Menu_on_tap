@@ -19,7 +19,6 @@ from django.urls import path,include
 from Authentication import urls
 from django.conf.urls.static import static
 from django.conf import settings
-from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),

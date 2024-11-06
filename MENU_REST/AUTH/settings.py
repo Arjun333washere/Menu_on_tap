@@ -30,6 +30,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = False #production = false
 
 ALLOWED_HOSTS = ['menu-on-tap.vercel.app',
+                 'mealontap.xyz','www.mealontap.xyz',
                  "ec2-13-60-40-232.eu-north-1.compute.amazonaws.com",
                  "13.60.40.232"]
 #add more hosts here edit later
@@ -155,6 +156,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CORS_ALLOW_ALL_ORIGINS = False  #changing to false since we are moving to prod
 CORS_ALLOWED_ORIGINS = [
     "https://menu-on-tap.vercel.app",
+    "https://mealontap.xyz",
+    "https://www.mealontap.xyz",
 ]
 
 
