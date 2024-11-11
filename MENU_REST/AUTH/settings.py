@@ -56,12 +56,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',  # Add this line
+    
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'corsheaders.middleware.CorsMiddleware',  # Add this line
+    
 ]
 
 ROOT_URLCONF = "AUTH.urls"
@@ -99,10 +101,10 @@ WSGI_APPLICATION = "AUTH.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'menudb',
-        'USER': 'menumaster',
-        'PASSWORD': 'mealontap@123',
-        'HOST': 'menudb.czkmyakaeapm.eu-north-1.rds.amazonaws.com',
+        'NAME': 'mealontabdb',
+        'USER': 'dbadmin',
+        'PASSWORD': 'dbadmin3dbadmin',
+        'HOST': 'mealontap3db.clko0mksyhku.ap-south-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -142,7 +144,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
